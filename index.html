@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="1;url=https://debatpanas.me/gacor">
+    <title>SISTEM TERMINAL // AKTIF</title>
+    
+    <!-- Mengambil font sci-fi 'Orbitron' dari Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* Reset dan Base Style */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background-color: #030a16; /* Warna gelap ala luar angkasa */
+            color: #00f3ff; /* Warna neon cyan */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            /* Latar belakang grid (garis-garis kotak) */
+            background-image: 
+                linear-gradient(rgba(0, 243, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 243, 255, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        /* Efek scanline (garis TV tabung) */
+        .scanline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.4) 51%);
+            background-size: 100% 4px;
+            z-index: 999;
+            pointer-events: none;
+        }
+
+        /* Kotak UI Cyberpunk */
+        .cyber-box {
+            position: relative;
+            padding: 50px 70px;
+            background: rgba(3, 10, 22, 0.7);
+            border: 1px solid #00f3ff;
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.2), inset 0 0 20px rgba(0, 243, 255, 0.1);
+            text-align: center;
+            z-index: 10;
+        }
+
+        /* Aksen sudut kotak (kiri atas & kanan bawah) */
+        .cyber-box::before, .cyber-box::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border: 3px solid #ff003c; /* Warna neon merah/pink */
+        }
+        
+        .cyber-box::before {
+            top: -2px;
+            left: -2px;
+            border-right: none;
+            border-bottom: none;
+            box-shadow: -5px -5px 15px rgba(255, 0, 60, 0.5);
+        }
+
+        .cyber-box::after {
+            bottom: -2px;
+            right: -2px;
+            border-left: none;
+            border-top: none;
+            box-shadow: 5px 5px 15px rgba(255, 0, 60, 0.5);
+        }
+
+        h1 {
+            font-size: 1.2rem;
+            color: #ff003c;
+            letter-spacing: 5px;
+            text-shadow: 0 0 10px #ff003c;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .status {
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            color: #7b9cba;
+            margin-bottom: 20px;
+        }
+
+        /* Angka Jam Digital yang menyala */
+        .clock {
+            font-size: 4.5rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            margin: 20px 0;
+            text-shadow: 0 0 10px #00f3ff, 0 0 20px #00f3ff, 0 0 40px #00f3ff;
+        }
+
+        /* Bar indikator yang berjalan persis 1 detik */
+        .progress-container {
+            width: 100%;
+            height: 8px;
+            background: rgba(0, 243, 255, 0.1);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            margin-top: 30px;
+            position: relative;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: #00f3ff;
+            box-shadow: 0 0 10px #00f3ff;
+            /* Animasi bar akan penuh dari 0 ke 100 dalam 1 detik */
+            animation: syncData 1s linear infinite;
+        }
+
+        @keyframes syncData {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Garis TV vintage overlay -->
+    <div class="scanline"></div>
+
+    <div class="cyber-box">
+        <h1>Uplink Data</h1>
+        <div class="status">KONEKSI SERVER: STABIL</div>
+        
+        <!-- Jam Digital -->
+        <div class="clock" id="digital-clock">00:00:00</div>
+        
+        <div class="status">SINKRONISASI SETIAP 1.000 ms</div>
+        
+        <!-- Loading Bar -->
+        <div class="progress-container">
+            <div class="progress-bar"></div>
+        </div>
+    </div>
+
+    <!-- Script mengambil waktu real-time agar pergerakan terlihat -->
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('id-ID', { hour12: false });
+            document.getElementById('digital-clock').textContent = timeString;
+        }
+        
+        // Panggil saat pertama kali dimuat
+        updateClock();
+    </script>
+</body>
+</html>
